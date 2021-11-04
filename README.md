@@ -44,11 +44,13 @@ npm install
 
 ## Usage ℹ️
 
-Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. You can name the assets anything as long as it has a rarity weight attached in the file name like so: `example element#70.png`. You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
+Your various layers are stored in the 'layers' directory. Create a seperate folder for each layer that you have, and save the assets associated with that layer within that folder. The assets can be named as anything, but requires a rarity weight attached in the file name like so: `example element#70.png`. The number represents the maximum chance of occurence for that asset, for example in this case, a max of 70% of the generated art will carry this asset trait. Hence, the various assets will have to sum to 100 (i.e. 100%). 
+
+You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
 
 Once you have all your layers, go into `src/config.js` and update the `layerConfigurations` objects `layersOrder` array to be your layer folders name in order of the back layer to the front layer.
 
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
+_Example:_ If you are creating a portrait design, layers are: head, mouth, eyes, eyewear, and then headwear. Thus your `layersOrder` would look like this:
 
 ```js
 const layerConfigurations = [
@@ -65,11 +67,11 @@ const layerConfigurations = [
 ];
 ```
 
-The `name` of each layer object represents the name of the folder (in `/layers/`) that the images reside in.
+The `name` of each layer object corresponds to each layers' folder name (in `/layers/`) that the asset images reside in.
 
 Optionally you can now add multiple different `layerConfigurations` to your collection. Each configuration can be unique and have different layer orders, use the same layers or introduce new ones. This gives the artist flexibility when it comes to fine tuning their collections to their needs.
 
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear and you want to create a new race or just simple re-order the layers or even introduce new layers, then you're `layerConfigurations` and `layersOrder` would look something like this:
+_Example:_ From the portait scenario above, if you you want to add background, create a new race or re-order the layers or introduce new layers, then you're `layerConfigurations` and `layersOrder` would look something like this:
 
 ```js
 const layerConfigurations = [
@@ -87,15 +89,15 @@ const layerConfigurations = [
   },
   {
     // Creates an additional 100 artworks
-    growEditionSizeTo: 150,
+    growEditionSizeTo: 150,     // adds +100 to above, so cumulative total is 150
     layersOrder: [
       { name: "Background" },
       { name: "Head" },
-      { name: "Eyes" },
+      { name: "Eyes" },         // eyes and mouth order is swapped
       { name: "Mouth" },
       { name: "Eyeswear" },
       { name: "Headwear" },
-      { name: "AlienHeadwear" },
+      { name: "AlienHeadwear" },  //added
     ],
   },
 ];
